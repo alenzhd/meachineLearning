@@ -14,11 +14,11 @@ def show_accuracy(a, b):
 
 
 if __name__ == "__main__":
-    data = np.loadtxt('bipartition.txt', dtype=np.float, delimiter='\t')
-    x, y = np.split(data, (2, ), axis=1)
-    y = y.ravel()
+    data = np.loadtxt('bipartition.txt', dtype=np.float, delimiter='\t') #numpy读取文件的格式
+    x, y = np.split(data, (2, ), axis=1) #以2为边界把数据分给x和y
+    y = y.ravel() #把数据降为1维，写成一行
 
-    # 分类器
+    # 分类器 12个
     clf_param = (('linear', 0.1), ('linear', 0.5), ('linear', 1), ('linear', 2),
                 ('rbf', 1, 0.1), ('rbf', 1, 1), ('rbf', 1, 10), ('rbf', 1, 100),
                 ('rbf', 5, 0.1), ('rbf', 5, 1), ('rbf', 5, 10), ('rbf', 5, 100))

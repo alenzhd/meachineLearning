@@ -16,16 +16,18 @@ def extend(a, b, r):
 
 
 if __name__ == "__main__":
-    np.random.seed(0)
+    np.random.seed(0)#当我们设置相同的seed，每次生成的随机数相同。如果不设置seed，则每次会生成不同的随机数
     N = 20
-    x = np.empty((4*N, 2))
-    means = [(-1, 1), (1, 1), (1, -1), (-1, -1)]
+    x = np.empty((4*N, 2)) # (80,2)的数据
+    print("x shape",x.shape)
+    means = [(-1, 1), (1, 1), (1, -1), (-1, -1)] #4个不同的中心
     sigmas = [np.eye(2), 2*np.eye(2), np.diag((1,2)), np.array(((2,1),(1,2)))]
     for i in range(4):
-        mn = stats.multivariate_normal(means[i], sigmas[i]*0.3)
-        x[i*N:(i+1)*N, :] = mn.rvs(N)
+        mn = stats.multivariate_normal(means[i], sigmas[i]*0.3)#多元正态分布
+        x[i*N:(i+1)*N, :] = mn.rvs(N) #rvs 生成随机数
     a = np.array((0,1,2,3)).reshape((-1, 1))
-    y = np.tile(a, N).flatten()
+    y = np.tile(a, N).flatten() #降成一维 title复制N份
+    print("y",y)
     clf = svm.SVC(C=1, kernel='rbf', gamma=1, decision_function_shape='ovo')
     # clf = svm.SVC(C=1, kernel='linear', decision_function_shape='ovr')
     clf.fit(x, y)
