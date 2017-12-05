@@ -1,0 +1,53 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 class_lr.sh 
+\f1 \'ca\'c7\'b7\'d6\'c0\'e0\'d4\'cb\'d0\'d0\'b5\'c4\'d6\'f7
+\f0 shell
+\f1 \'bd\'c5\'b1\'be\
+\
+\'b5\'f7\'d3\'c3\'c1\'cb\
+python feature_select.py $seuil1 $seuil2\
+python feature_mat.py\
+python cross_validation_clf.py \
+# python gender_class_lr.py\
+\'c8\'fd\'b8\'f6python\'bd\'c5\'b1\'be\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 1. feature_select.py \'ca\'c7\'d7\'f6\'c1\'cb\'cc\'d8\'d5\'f7\'c9\'b8\'d1\'a1\'a3\'ac\'b4\'d3male/female_tags_desc_0905.txt \'c0\'ef\'b6\'c1\'c4\'d0\'c5\'aelift\'a3\'a8hive\'c5\'dc\'b3\'f6\'c0\'b4\'b5\'c4\'d6\'ae\'d7\'f6\'b2\'ee\'c0\'b4\'c9\'b8\'d1\'a1, \'cd\'ac\'ca\'b1\'c9\'fa\'b3\'c9uv\'d7\'d6\'b5\'e4\'ba\'cd\'cc\'d8\'d5\'f7\'d7\'d6\'b5\'e4\'b1\'a3\'b4\'e6\'b5\'bddict_mixuid.txt\'ba\'cddict_tags_selected.txt\'c0\'ef\
+2. feature_mat.py \'ca\'c7\'b8\'f9\'be\'dduv\'d7\'d6\'b5\'e4\'d3\'eb\'cc\'d8\'d5\'f7\'d7\'d6\'b5\'e4\'c0\'b4\'d7\'e9\'b3\'c9X,y \'d1\'b5\'c1\'b7\'be\'d8\'d5\'f3\'d3\'eblabel\'be\'d8\'d5\'f3\
+3. cross_validation_clf.py \'ca\'c7\'b7\'d6\'c0\'e0\'c6\'f7\'d1\'b5\'c1\'b7\'bc\'d3\'cf\'d4\'ca\'be\'bd\'bb\'b2\'e6\'d1\'e9\'d6\'a4\'bd\'e1\'b9\'fb\
+4. python gender_class_lr.py \'ca\'c7\'b7\'d6\'c0\'e0\'c6\'f7\'d1\'b5\'c1\'b7\'cd\'ac\'ca\'b1\'b1\'a3\'b4\'e6\'d1\'b5\'c1\'b7\'ba\'c3\'b5\'c4\'bd\'e1\'b9\'fb\'b5\'bd model_coeffient_new.txt\
+\
+\'b7\'d6\'c0\'e0\'b9\'fd\'b3\'ccsql.txt\'bc\'c7\'c2\'bc\'c1\'cb\'c5\'dc\'d6\'ae\'c7\'b0\'b5\'c4\'d1\'b5\'c1\'b7\'d0\'d0\'ce\'aa\'ca\'fd\'be\'dd\'ba\'cd\'c4\'d0\'c5\'aelift\'b5\'c4\'d2\'bb\'d0\'a9hive\'d3\'ef\'be\'e4\'a3\'ac\'b5\'ab\'ca\'c7\'b2\'bb\'c8\'ab\'a3\'ac\'d7\'ee\'ba\'c3\'d7\'d4\'bc\'ba\'d0\'b4\
+\
+==================== \'ca\'fd\'be\'dd ==========================\
+\
+\'d4\'ad\'ca\'bc\'b5\'c4qq\'ba\'cd\'cc\'d4\'b1\'a6\'d0\'d4\'b1\'f0\'ca\'fd\'be\'dd\'a3\'ba\
+qq\'d4\'da result.ra\'d3\'ebresult0911.rar\'c0\'ef\
+taobao \'d4\'da \'cc\'d4\'b1\'a6\'d3\'c3\'bb\'a7\'c3\'fb\'d3\'eb\'d0\'d4\'b1\'f0\'a3\'a836\'cd\'f2\'a3\'a9\'b8\'b1\'b1\'be.rar\
+\'d0\'e8\'d2\'aa\'d7\'d4\'bc\'ba\'d0\'b4\'d5\'fd\'d4\'f2\'c0\'b4\'c6\'a5\'c5\'e4\'b3\'f6qq\'ba\'c5\'d3\'eb\'d0\'d4\'b1\'f0\
+\
+\
+==================== \'d6\'ae\'ba\'f3\'b7\'d6\'c0\'e0 =======================\
+streaming_nosklearn.py \'ca\'c7\'d7\'ee\'ba\'f3\'d7\'f6\'b7\'d6\'c0\'e0\'d3\'c3\'b5\'c4hive streaming\'bd\'c5\'b1\'be\
+\'d6\'ae\'ba\'f3\'b7\'d6\'c0\'e0\
+\'d1\'f9\'c0\'fdsql\'d3\'ef\'be\'e4\'a3\'ba\
+add file /data1/user/wangxc/gender_streaming/streaming_nosklearn.py;\
+add file /data1/user/wangxc/gender_streaming/model_coeffient_new.txt;\
+from \
+    (select mix_uid,type_id,tags \
+        from (select mix_uid,type_id,tags \
+         from dmp_online.dmp_ud_user_tags_bd\
+         where day_id >= 20160901 and day_id <=20161007 and province = 'jiangsu' group by mix_uid,type_id,tags) t1 \
+         cluster by mix_uid\
+         )t\
+     insert overwrite table wangxc.mix_gender_model\
+     select transform(t.mix_uid,t.type_id,t.tags) using 'python streaming_nosklearn.py' as (mix_uid, gender);\
+\
+===================================================\
+\
+}

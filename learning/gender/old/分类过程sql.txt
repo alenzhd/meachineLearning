@@ -1,0 +1,181 @@
+wangxc.qq_gender 存着qq号与gender的对应关系
+mixuid与qq号的hive关系表：hulx.qq
+         mix_uid : uuid,移网用户标识
+         imsi      : imsi
+         qq_e    : 加密qq号
+         qq       : 明文qq号
+
+================ 先匹配有样本的qq号，匹配到mix_uid =======================
+
+select t1.qq,mix_uid,gender from hulx.qq t1
+    join wangxc.qq_gender t2
+    on t1.qq = t2.qq
+
+hive -e "
+select distinct t3.mix_uid,type_id,tags,age
+    from dmp_online.dmp_ud_user_tags_bd t4
+    join zhanghd.mixuid_gender t3
+    on t4.mix_uid = t3.mix_uid
+    where day_id >= 20170701;" > data_flow_age.txt
+
+select t1.qq,mix_uid,age from hulx.qq t1
+    join wangxc.qq_age t2
+    on t1.qq = t2.qq
+
+
+hive -e "select t1.qq,mix_uid,gender from hulx.qq t1
+    join wangxc.qq_gender0911 t2
+    on t1.qq = t2.qq" > res_0911.txt
+
+
+=============== 找出mix_uid的30天所有tags，对tags进行group统计,这里不考虑权重 ======================
+
+-- hive -e "
+-- select distinct mix,gender from wangxc.qq_mix_gender" > mix_gender_0905.txt
+
+
+hive -e "
+select distinct mix_uid,type_id,tags,gender
+    from dmp_online.dmp_ud_user_tags_bd
+    join
+    wangxc.qq_mix_gender
+    on mix_uid = mix
+    where day_id >= 20160801" > 30days_tags.txt
+
+=== 全部tags
+
+hive -e "
+select distinct mix_uid,type_id,tags,gender
+    from dmp_online.dmp_ud_user_tags_bd
+    join
+    wangxc.qq_mix_gender
+    on mix_uid = mix
+    where day_id >= 20160601" > all_days_tags_0905.txt
+
+
+hive -e "
+select distinct mix_uid,type_id,tags,gender
+    from dmp_online.dmp_ud_user_tags_bd
+    join
+    wangxc.qq_mix_gender0911
+    on mix_uid = mix
+    where day_id >= 20160701" > all_days_tags_0911.txt
+
+hive -e "
+select mix,gender
+from wangxc.qq_mix_gender0911" > mixuid_gender_all.txt
+
+============== mix_uid 里UV Male与Female数量 ===================== 每个mix_uid是一条样本
+select gender,COUNT(mix_uid)
+from 
+    (select distinct mix_uid,gender 
+        from wangxc.gender_class_tags)t 
+    group by
+    gender;
+
+mix_uid数量:
+Male:16709
+Female:8740
+
+0911:
+Female  2264
+Male    7204
+
+============= 找到分男女行为类型编号的排名，预计取200个男性优先的app和200个女性优先的app.
+hive -e "
+select gender,type,tags,COUNT(mix_uid) as action_nb
+    from wangxc.gender_class_tags
+    group by type,tags,gender
+    order by action_nb desc;" > action_desc.txt
+
+============ Male tags排名 ====================
+hive -e "
+select 'Male',type,tags,COUNT(mix_uid)/7204 as action_nb
+    from wangxc.gender_class_tags
+    where gender = 'Male'
+    group by type,tags
+    order by action_nb desc;" > male_tags_desc_0905.txt
+
+============ Female tags排名 ==================
+hive -e "
+select 'Female',type,tags,COUNT(mix_uid)/2264 as action_nb
+    from wangxc.gender_class_tags
+    where gender = 'Female'
+    group by type,tags
+    order by action_nb desc;" > female_tags_desc_0905.txt
+
+
+============ 特征选择 =========================
+首先用pre_data.py用正则来匹配出数据，qq和gender两列
+feature_select.py是用来特征选择的，分析每个特征在男女中的lift （lift = 在样本中出现总次数/总样本数量）
+选择  abs(lift(male) - lift(female)) / min(lift(male/female)) 大于一定阈值同时出现次数不少于一定样本阈值的特征，保存这些
+特征在一个字典里并保存到txt文件中 dict_tags_selected.txt，这样是为了到时候组织特征矩阵
+样例
+f_2:564:: 0
+4_4031188   1
+b_130   2
+c_44    3
+f_6:501813::    4
+
+
+同样道理，组织 mix_uid对应index的词典 dict_mixuid.txt，保存到txt里
+样例
+Y054AOYY78WZWTWDY5QYB62Z9US4RR3W    0   Male
+55O6XT2ZYWL7YWYQ5C84X3VF29PXAPND    1   Male
+US485633ATU91PWZZ019A7TA55EQQ408    2   Female
+X1SU532WBZRVB15SQA0S22XNA303ZZUA    3   Female
+XY8R0CV2WZVWM1T75QS1MPUT529Q13V5    4   Male
+BU3R1116UUB9ZD1PT7X9YW28S2MB7B21    5   Female
+13P6RRW7UWABBV59A40AAW8DA1000697    6   Male
+
+
+重格式化所有训练数据：
+'mix_uid/ 特征key / gender分类' 
+0012C25V6YXZ0235N224O18SNYZAFZ82    c_54    Male
+001YW18225PWS4USDTP5Y7XRZS9083U6    b_505692    Male
+003X90C0BP7P0R844ZET7U2D14A48Z12    b_507712    Female
+0088V21YVUUXZ0A9UQ5YSZ2CP10OU475    c_20    Female
+00QB15Z011RPX120WX5Z9Z0X3O3X0ZS5    b_515978    Male
+00WVYQSYXOC2QXY5100YW9T6AAF042R5    c_36    Male
+00WYUT3W706TQXR320XXPDX308R3AW0W    c_35    Female
+0112C941Q349V3V2T51B2Z0211Z5VQ10    c_7502  Male
+01134VB462B3T2Z8WY4VZW295039T2U7    b_64    Male
+
+=========================================================
+a = load 'weight_clfs.txt' as (weight:chararray,index:chararray);
+b = load 'dict_tags_selected.txt' as (tags:chararray,index2:chararray);
+x = join a by index, b by index2;
+res = foreach x generate tags,weight,index;
+
+================================
+topapp = load 'topapp_list.txt' as (type:chararray,index:chararray,name:chararray);
+topsite = load 'topsite_list.txt' as (type:chararray,index:chararray,name:chararray);
+rule = UNION topapp,topsite;
+
+data = load 'weight_tags_seperate.txt' as (type2:chararray,index2:chararray,weight:chararray);
+
+data_join = join data by (type2,index2),rule by (type,index);
+res = foreach data_join generate type,index,name,weight;
+res2 = foreach res generate type,index,name,weight2,ABS(weight2) as abs_w;
+res3 = order res2 by abs_w desc;
+
+
+
+============================================taobao ===========
+
+select distinct mix_uid,gender from 
+    wangxc.taobao_gender_jiami
+    join dmp_online.dmp_um_user_rel_dt
+    on taobao_mm = flag_id
+    where flag='sladuid' and day_id>=20160901;
+
+select mix_uid,flag_id from dmp_um_user_rel_dt where flag=sladuid and day_id>=20160901
+
+
+hive -e "
+select distinct mix_uid,type_id,tags,gender
+    from dmp_online.dmp_ud_user_tags_bd
+    join
+    wangxc.mixuid_gender
+    on mix_uid = mix
+    where day_id >= 20160801" > taobao_all_days_tags_0905.txt
