@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<property-set>
+	<property key="gs.project.adapter" type="string">com.ai.dmp.download.adapter.JSLTAdapter</property>
+	<property key="tab.map" type="properties">
+		<properties>
+			<property key="dmp_uc_tags_m_bh" type="string">mt</property>
+			<property key="dmp_uc_otags_m_bh" type="string">mot</property>
+			<property key="dmp_um_m_ht" type="string">um</property>
+			<property key="dmp_mn_kpi_bh" type="string">kh</property>
+			<property key="dmp_mn_kpi_bd" type="string">kd</property>
+			<property key="dmp_dpi_lt_jiangsu_mobile_bh" type="string">dpi</property>
+			<property key="jiema_url_bh" type="string">url</property>
+			<property key="dmp_upload_inter_tab_bh_tmp" type="string">kv</property>
+		</properties>
+	</property>
+	
+	
+	<property key="dmp_upload_inter_tab_bh_tmp" type="properties">
+		<properties>
+			<property key="user_id" type="string">user_id string</property>
+			<property key="value" type="string">value</property>
+			<property key="partition" type="string">provider string,province string,day_id string,hour_id string</property>
+			<property key="partition_flag" type="string">tab</property>
+
+		</properties>
+	</property>
+	
+	<property key="dmp_uc_tags_m_bh" type="properties">
+		<properties>
+			<property key="user_id" type="string">mix_m_uid string</property>
+			<property key="value" type="string">app_id string,site_id string,cont_id string,action_id string,value string,value_type_id string,duration int,last_timestamp string,count int</property>
+			<property key="partition" type="string">provider string,province string,day_id string,hour_id string</property>
+			<property key="partition_flag" type="string">none</property>
+
+		</properties>
+	</property>
+	
+	<property key="dmp_uc_otags_m_bh" type="properties">
+		<properties>
+			<property key="user_id" type="string">mix_m_uid string</property>
+			<property key="value" type="string">tag_index string,duration int,last_timestamp string,count int</property>
+			<property key="partition" type="string">provider string,province string,day_id string,hour_id string</property>
+			<property key="partition_flag" type="string">sa_id</property>
+		</properties>
+	</property>
+	<property key="dmp_um_m_ht" type="properties">
+		<properties>
+			<property key="user_id" type="string">mix_m_uid string</property>
+			<property key="value" type="string">m_id string,id2uid_score double,uid2id_score double</property>
+			<property key="partition" type="string">provider string,province string,day_id string</property>
+			<property key="partition_flag" type="string">mflag</property>
+		</properties>
+	</property>
+	
+	<property key="dmp_mn_kpi_bh" type="properties">
+		<properties>
+			<property key="user_id" type="string">kpi string</property>
+			<property key="value" type="string">value double</property>
+			<property key="partition" type="string">provider string,province string,day_id string,hour_id string</property>
+			<property key="partition_flag" type="string">none</property>
+		</properties>
+	</property>
+	<property key="dmp_mn_kpi_bd" type="properties">
+		<properties>
+			<property key="user_id" type="string">kpi string</property>
+			<property key="value" type="string">value double</property>
+			<property key="partition" type="string">provider string,province string,day_id string</property>
+			<property key="partition_flag" type="string">none</property>
+		</properties>
+	</property>
+	
+	<property key="jiema_url_bh" type="properties">
+                <properties>
+                        <property key="user_id" type="string">url string</property>
+                        <property key="value" type="string">none</property>
+                        <property key="partition" type="string">provider string,province string,day_id string,hour_id string</property>
+                        <property key="partition_flag" type="string">none</property>
+                </properties>
+        </property>
+	
+	<property key="dmp_dpi_lt_jiangsu_mobile_bh" type="properties">
+		<properties>
+			<property key="user_id" type="string">s_phone_no string</property>
+			<property key="value" type="string">
+				s_lac                   string,
+				s_ci                    string,
+				s_imei                  string,
+				s_flow_type_id          string,
+				s_start_time            string,
+				s_end_time              string,
+				s_duration              string,
+				s_up_flow               string,
+				s_down_flow             string,
+				s_total_flow            string,
+				s_rat_type              string,
+				s_src_ip                string,
+				s_dest_ip               string,
+				s_http_status           string,
+				s_ua                    string,
+				s_apn_id                string,
+				s_imsi                  string,
+				s_data_sgsn_ip          string,
+				s_data_ggsn_ip          string,
+				s_content_type          string,
+				s_src_port              string,
+				s_dest_port             string,
+				s_mark_flag             string,
+				s_union_cnt             string,
+				s_app_id                string,
+				s_app_type_id           string,
+				s_siteid                string,
+				s_site_category_id      string,
+				s_cont_class_str        string,
+				s_key_word_str          string,
+				s_cont_class_flag       string,
+				s_hot_word_flag         string,
+				s_url                   string,
+				s_idfa                  string
+			</property>
+			<property key="partition" type="string">provider string,province string,day_id string,hour_id string</property>
+			<property key="partition_flag" type="string">none</property>
+		</properties>
+	</property>
+
+	<property key="pris.map" type="properties">
+		<properties>
+
+			
+			<property key="a" type="string">android_id</property>
+			<property key="b" type="string">imei</property>
+			<property key="c" type="string">imsi</property>
+			<property key="d" type="string">mac</property>
+			<property key="e" type="string">phone_no</property>
+			<property key="f" type="string">user_name</property>
+			<property key="g" type="string">s_idfa</property>
+			<property key="h" type="string">s_imei</property>
+			<property key="i" type="string">s_imsi</property>
+			<property key="j" type="string">idfa</property>
+			<property key="k" type="string">pidfa</property>
+
+			<property key="A" type="string">flow</property>
+                        <property key="B" type="string">lac_ci</property>
+                        <property key="C" type="string">loc_geo</property>
+                        <property key="D" type="string">device_model</property>
+                        <property key="E" type="string">device_type</property>
+                        <property key="F" type="string">device_os</property>
+                        <property key="G" type="string">device_browser</property>
+
+			<property key="H" type="string">comp_domain</property>
+			<property key="I" type="string">top_domain</property>
+			
+			<property key="mt" type="string">dmp_uc_tags_m_bh</property>
+			<property key="mot" type="string">dmp_uc_otags_m_bh</property>
+			<property key="um" type="string">dmp_um_m_ht</property>
+
+
+		</properties>
+	</property>
+	
+	<property key="province.map" type="properties">
+		<properties>
+			<property key="jiangsu" type="string">js</property>
+		</properties>
+	</property>
+	
+	<!--<property key="dir-sucdir" type="string">E:\data\download\suc\</property>
+	<property key="dir-errdir" type="string">E:\data\download\err\</property>
+	<property key="hive-database" type="string">dmp_online</property>-->
+	
+	<!--<property key="dir-sucdir" type="string">/data1/user/xiezh/download/data/suc/</property>
+	<property key="dir-errdir" type="string">/data1/user/xiezh/download/data/err/</property>
+	<property key="hive-database" type="string">xiezh</property>-->
+	
+	<property key="dir-sucdir" type="string">/data1/user/dmp/download/data/suc/</property>
+	<property key="dir-errdir" type="string">/data1/user/dmp/download/data/err/</property>
+	<property key="hive-database" type="string">dmp_online</property>
+
+	<property key="rest-kv_url" type="string">http://122.194.14.177:18080/yx?id=</property>
+	<property key="rest-thread_num" type="int">40</property>
+	<property key="wait_time" type="int">2</property>
+	<property key="kv_timeout" type="int">20</property>
+	<property key="reget_num" type="int">100</property>
+	<property key="is_decrypt" type="boolean">false</property>
+	<property key="is_proxy" type="boolean">false</property>
+	<property key="proxy_host" type="string">proxy.asiainfo.com</property>
+	<property key="proxy_port" type="int">8080</property>
+	<property key="proxy_username" type="string">ai\\dmp-message</property>
+	<property key="proxy_password" type="string">MIX@asiainfo</property>
+
+</property-set>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<property-set>
+<!-- 
+js-lt:江苏联通
+sh-dx:上海电信
+dx-yun:电信云
+ -->
+	<property key="gs.project" type="string">js-lt</property>
+</property-set>

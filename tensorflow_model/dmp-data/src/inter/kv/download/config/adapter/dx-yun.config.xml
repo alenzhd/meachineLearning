@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<property-set>
+	<property key="gs.project.adapter" type="string">com.ai.dmp.download.adapter.DXYUNAdapter</property>
+	<property key="inter-tab-name" type="string">xxx</property>
+	<property key="tab.map" type="properties">
+		<properties>
+			<property key="dmp_uc_tags_bh" type="string">A</property>
+		</properties>
+	</property>
+	<property key="dir-sucdir" type="string">E:\data\download\suc\</property>
+	<property key="dir-errdir" type="string">E:\data\download\err\</property>
+	<property key="hive-database" type="string">dmp_online</property>
+
+	<property key="rest-token_url" type="string">http://61.129.39.71/telecom-dmp/getToken?</property>
+	<property key="rest-apiKey" type="string">apiKey=7790f9d96c07fa96707cdd01b52a9abf</property>
+	<property key="userref" type="string">ctyunroot</property>
+	<property key="userpwd" type="string">123456</property>
+	<property key="rest-sign" type="string">sign=0aa3f3be0110fc5d7cecb4e427b4104cc6239f13</property>
+	<property key="rest-kv_url" type="string">http://10.1.51.14:8080/restful/water/asiainfo/{inter}/ctyunroot/</property>
+	<property key="rest-thread_num" type="int">1</property>
+	<property key="wait_time" type="int">2</property>
+	<property key="kv_timeout" type="int">10</property>
+	<property key="reget_num" type="int">2</property>
+	<property key="is_decrypt" type="boolean">false</property>
+	<property key="is_proxy" type="boolean">true</property>
+	<property key="proxy_host" type="string">proxy.asiainfo.com</property>
+	<property key="proxy_port" type="int">8080</property>
+	<property key="proxy_username" type="string">ai\\dmp-message</property>
+	<property key="proxy_password" type="string">mixdata@AI</property>
+	
+	<property key="province.map" type="properties">
+		<properties>
+			<property key="ah" type="string">anhui</property>
+			<property key="bj" type="string">beijing</property>
+		</properties>
+	</property>
+	
+	<property key="pris.map" type="properties">
+		<properties>
+			<property key="A" type="string">app</property>
+			<property key="a" type="string">imei</property>
+		</properties>
+	</property>
+	
+</property-set>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<property-set>
+	<property key="gs.project.adapter" type="string">com.ai.dmp.download.adapter.SHDXAdapter</property>
+	<property key="inter-tab-name" type="string">yalian_to_upload_inter_tab</property>
+	<property key="tab.map" type="properties">
+		<properties>
+			<property key="dmp_uc_tags_bh" type="string">dmpuctagsbh</property>
+		</properties>
+	</property>
+	<!-- <property key="dir-sucdir" type="string">e:/data/download/suc/</property>
+	<property key="dir-errdir" type="string">e:/data/download/err/</property>
+	<property key="hive-database" type="string">dmp_online</property> -->
+
+	<property key="dir-sucdir" type="string">/data1/user/dmptest/user/xzh/download/data/suc/</property>
+	<property key="dir-errdir" type="string">/data1/user/dmptest/user/xzh/download/data/err/</property>
+	
+	<property key="hive-database" type="string">xiezh</property>
+
+	<property key="rest-token_url" type="string">http://61.129.39.71/telecom-dmp/getToken?</property>
+	<property key="rest-apiKey" type="string">apiKey=7790f9d96c07fa96707cdd01b52a9abf</property>
+	<property key="rest-sign" type="string">sign=0aa3f3be0110fc5d7cecb4e427b4104cc6239f13</property>
+	<property key="rest-kv_url" type="string">http://61.129.39.71/telecom-dmp/kv/getValueByKey?</property>
+	<property key="rest-thread_num" type="int">60</property>
+	<property key="wait_time" type="int">2</property>
+	<property key="kv_timeout" type="int">10</property>
+	<property key="reget_num" type="int">2</property>
+	<property key="is_decrypt" type="boolean">true</property>
+	<property key="is_proxy" type="boolean">false</property>
+	<property key="proxy_host" type="string">proxy.asiainfo.com</property>
+	<property key="proxy_port" type="int">8080</property>
+	<property key="proxy_username" type="string">ai\\dmp-message</property>
+	<property key="proxy_password" type="string">mixdata@AI</property>
+	
+</property-set>
