@@ -14,7 +14,7 @@ def show_accuracy(a, b):
 
 
 if __name__ == "__main__":
-    data = np.loadtxt('bipartition.txt', dtype=np.float, delimiter='\t') #numpy读取文件的格式
+    data = np.loadtxt('bipartition.txt', dtype=np., delimiter='\t') #numpy读取文件的格式
     x, y = np.split(data, (2, ), axis=1) #以2为边界把数据分给x和y
     y = y.ravel() #把数据降为1维，写成一行
 

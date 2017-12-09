@@ -27,7 +27,7 @@ if __name__ == '__main__':
         data.set_value(data[4] == iris_type, 4, i)
     x = data.iloc[:, :2]
     n, features = x.shape
-    print x
+    print (x)
     y = data.iloc[:, -1].astype(np.int)
     c_number = np.unique(y).size
     x, x_test, y, y_test = train_test_split(x, y, train_size=0.6, random_state=0)

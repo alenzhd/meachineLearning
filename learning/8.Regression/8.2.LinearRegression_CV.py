@@ -21,7 +21,9 @@ if __name__ == "__main__":
 
     x_train, x_test, y_train, y_test = train_test_split(x, y, random_state=1)
     # model = Lasso()
-    model = Ridge()#岭回归
+    # model = Ridge()#岭回归
+    from sklearn.linear_model import LogisticRegression
+    model = LogisticRegression()
     alpha_can = np.logspace(-3, 2, 10) #等比数列
     np.set_printoptions(suppress=True)#设置数组可以显示，显示多位小数位
     print ('alpha_can = ', alpha_can)

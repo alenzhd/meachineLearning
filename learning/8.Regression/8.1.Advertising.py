@@ -92,22 +92,22 @@ if __name__ == "__main__":
     print (model)
     print( linreg.coef_, linreg.intercept_)
 
-    order = y_test.argsort(axis=0)
-    y_test = y_test.values[order]
-    x_test = x_test.values[order, :]
-    y_hat = linreg.predict(x_test)
-    mse = np.average((y_hat - np.array(y_test)) ** 2)  # Mean Squared Error
-    rmse = np.sqrt(mse)  # Root Mean Squared Error
-    print ('MSE = ', mse,)
-    print ('RMSE = ', rmse)
-    print ('R2 = ', linreg.score(x_train, y_train))
-    print ('R2 = ', linreg.score(x_test, y_test))
-
-    plt.figure(facecolor='w')
-    t = np.arange(len(x_test))
-    plt.plot(t, y_test, 'r-', linewidth=2, label=u'真实数据')
-    plt.plot(t, y_hat, 'g-', linewidth=2, label=u'预测数据')
-    plt.legend(loc='upper right')
-    plt.title(u'线性回归预测销量', fontsize=18)
-    plt.grid(b=True)
-    plt.show()
+    # order = y_test.argsort(axis=0)
+    # y_test = y_test.values[order]
+    # x_test = x_test.values[order, :]
+    # y_hat = linreg.predict(x_test)
+    # mse = np.average((y_hat - np.array(y_test)) ** 2)  # Mean Squared Error
+    # rmse = np.sqrt(mse)  # Root Mean Squared Error
+    # print ('MSE = ', mse,)
+    # print ('RMSE = ', rmse)
+    # print ('R2 = ', linreg.score(x_train, y_train))
+    # print ('R2 = ', linreg.score(x_test, y_test))
+    #
+    # plt.figure(facecolor='w')
+    # t = np.arange(len(x_test))
+    # plt.plot(t, y_test, 'r-', linewidth=2, label=u'真实数据')
+    # plt.plot(t, y_hat, 'g-', linewidth=2, label=u'预测数据')
+    # plt.legend(loc='upper right')
+    # plt.title(u'线性回归预测销量', fontsize=18)
+    # plt.grid(b=True)
+    # plt.show()

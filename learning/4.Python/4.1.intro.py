@@ -119,8 +119,8 @@ if __name__ == "__main__":
     # print a
     # # # #
     # # # # linspace函数通过指定起始值、终止值和元素个数来创建数组，缺省包括终止值
-    # b = np.linspace(1, 10, 10)
-    # print 'b = ', b
+    b = np.linspace(1, 10, 10)
+    print 'b = ', b
     # # # #
     # # 可以通过endpoint关键字指定是否包括终值
     # c = np.linspace(1, 10, 10, endpoint=False)
@@ -129,7 +129,8 @@ if __name__ == "__main__":
     # # # 和linspace类似，logspace可以创建等比数列
     # # 下面函数创建起始值为10^1，终止值为10^2，有10个数的等比数列
     # d = np.logspace(1, 4, 4, endpoint=True)
-    # print (d)
+    d = np.logspace(1,4,4)
+    print (d)
     # # # #
     # # # # 下面创建起始值为2^0，终止值为2^10(包括)，有10个数的等比数列
     # f = np.logspace(0, 10, 11, endpoint=True, base=2)
@@ -142,8 +143,8 @@ if __name__ == "__main__":
     # #
     # 3.存取
     # 3.1常规办法：数组元素的存取方法和Python的标准方法相同
-    # a = np.arange(10)
-    # print (a)
+    a = np.arange(10)
+    print (a)
     # # # # 获取某个元素
     # print (a[3])
     # # # # # # 切片[3,6)，左闭右开
@@ -153,7 +154,7 @@ if __name__ == "__main__":
     # # 下标为负表示从后向前数
     # print (a[3:])
     # # 步长为2
-    # print (a[1:9:2])
+    print (a[1:9:2])
     # # # # # # 步长为-1，即翻转
     # print (a[::-1])
     # # # # # 切片数据是原数组的一个视图，与原数组共享内容空间，可以直接修改元素值
@@ -184,13 +185,13 @@ if __name__ == "__main__":
     # 3.2.2
     # 使用布尔数组i作为下标存取数组a中的元素：返回数组a中所有在数组b中对应下标为True的元素
     # 生成10个满足[0,1)中均匀分布的随机数
-    # a = np.random.rand(10)
-    # print (a)
+    a = np.random.rand(10)
+    print (a)
     # # 大于0.5的元素索引
-    # print (a > 0.5)
+    print (a > 0.5)
     # # 大于0.5的元素
-    # b = a[a > 0.5]
-    # print (b)
+    b = a[a > 0.5]
+    print (b)
     # # 将原数组中大于0.5的元素截取成0.5
     # a[a > 0.5] = 0.5
     # print (a)
@@ -242,38 +243,38 @@ if __name__ == "__main__":
 
     # 4.2 元素去重
     # 4.2.1直接使用库函数
-    # a = np.array((1, 2, 3, 4, 5, 5, 7, 3, 2, 2, 8, 8))
-    # print ('原始数组：', a)
+    a = np.array((1, 2, 3, 4, 5, 5, 7, 3, 2, 2, 8, 8))
+    print ('原始数组：', a)
     # # # 使用库函数unique
-    # b = np.unique(a)
-    # print ('去重后：', b)
+    b = np.unique(a)
+    print ('去重后：', b)
     # # # 4.2.2 二维数组的去重，结果会是预期的么？
-    # c = np.array(((1, 2), (3, 4), (5, 6), (1, 3), (3, 4), (7, 6)))
-    # print (u'二维数组：\n', c)
-    # print( '去重后：', np.unique(c))
+    c = np.array(((1, 2), (3, 4), (5, 6), (1, 3), (3, 4), (7, 6)))
+    print (u'二维数组：\n', c)
+    print( '去重后：', np.unique(c))
     # # # 4.2.3 方案1：转换为虚数
-    # # r, i = np.split(c, (1, ), axis=1)
-    # # x = r + i * 1j
-    # x = c[:, 0] + c[:, 1] * 1j
-    # print ('转换成虚数：', x)
-    # print ('虚数去重后：', np.unique(x))
+    # r, i = np.split(c, (1, ), axis=1)
+    # x = r + i * 1j
+    x = c[:, 0] + c[:, 1] * 1j
+    print ('转换成虚数：', x)
+    print ('虚数去重后：', np.unique(x))
     # print (np.unique(x, return_index=True))   # 思考return_index的意义
     # idx = np.unique(x, return_index=True)[1]
     # print ('二维数组去重：\n', c[idx])
     # # 4.2.3 方案2：利用set
-    # print( '去重方案2：\n', np.array(list(set([tuple(t) for t in c]))))
+    print( '去重方案2：\n', np.array(list(set([tuple(t) for t in c]))))
 
     # # 4.3 stack and axis
-    # a = np.arange(1, 10).reshape((3, 3))
-    # b = np.arange(11, 20).reshape((3, 3))
-    # c = np.arange(101, 110).reshape((3, 3))
-    # print ('a = \n', a)
-    # print ('b = \n', b)
-    # print ('c = \n', c)
-    # print ('axis = 0 \n', np.stack((a, b, c), axis=0))
-    # print ('axis = 1 \n', np.stack((a, b, c), axis=1))
-    # print ('axis = 2 \n', np.stack((a, b, c), axis=2))
-    #
+    a = np.arange(1, 10).reshape((3, 3))
+    b = np.arange(11, 20).reshape((3, 3))
+    c = np.arange(101, 110).reshape((3, 3))
+    print ('a = \n', a)
+    print ('b = \n', b)
+    print ('c = \n', c)
+    print ('axis = 0 \n', np.stack((a, b, c), axis=0))
+    print ('axis = 1 \n', np.stack((a, b, c), axis=1))
+    print ('axis = 2 \n', np.stack((a, b, c), axis=2))
+
     # a = np.arange(1, 10).reshape(3,3)
     # print (a)
     # b = a + 10
@@ -281,33 +282,38 @@ if __name__ == "__main__":
     # print (np.dot(a, b))
     # print (a * b)
     #
-    # a = np.arange(1, 10)
-    # print (a)
-    # b = np.arange(20,25)
-    # print (b)
-    # print (np.concatenate((a, b)))
+    a = np.arange(1, 10)
+    print (a)
+    b = np.arange(20,25)
+    print (b)
+    print (np.concatenate((a, b)))
 
     # 5.绘图
     # 5.1 绘制正态分布概率密度函数
     mpl.rcParams['font.sans-serif'] = [u'SimHei']  #FangSong/黑体 FangSong/KaiTi
     mpl.rcParams['axes.unicode_minus'] = False
-    # mu = 0
-    # sigma = 1
-    # x = np.linspace(mu - 3 * sigma, mu + 3 * sigma, 51)
-    # y = np.exp(-(x - mu) ** 2 / (2 * sigma ** 2)) / (math.sqrt(2 * math.pi) * sigma)
-    # print (x.shape)
-    # print ('x = \n', x)
-    # print (y.shape)
-    # print ('y = \n', y)
-    # # plt.plot(x, y, 'ro-', linewidth=2)
-    # plt.figure(facecolor='w')
-    # plt.plot(x, y, 'r-', x, y, 'go', linewidth=2, markersize=8)
+
+    mu = 0
+    sigma = 1
+    x = np.linspace(mu - 3 * sigma, mu + 3 * sigma, 51)
+    y = np.exp(-(x - mu) ** 2 / (2 * sigma ** 2)) / (math.sqrt(2 * math.pi) * sigma)
+    print (x.shape)
+    print ('x = \n', x)
+    print (y.shape)
+    print ('y = \n', y)
+    plt.plot(x,y,'ro-',linewidth=2)
+    plt.figure(facecolor='w')
+    plt.plot(x,y,'r-',x,y,'go',linewidth=2,markersize=8)
     # plt.xlabel('X', fontsize=15)
     # plt.ylabel('Y', fontsize=15)
     # plt.title(u'高斯分布函数', fontsize=18)
     # plt.grid(True)
     # plt.show()
-
+    plt.xlabel('X',fontsize=15)
+    plt.ylabel('Y',fontsize=15)
+    plt.title(u'高斯分布函数',fontsize=18)
+    plt.grid(True)
+    plt.show()
     # # 5.2 损失函数：Logistic损失(-1,1)/SVM Hinge损失/ 0/1损失
     # x = np.array(np.linspace(start=-2, stop=3, num=1001, dtype=np.float))
     # y_logit = np.log(1 + np.exp(-x)) / math.log(2)
@@ -459,16 +465,16 @@ if __name__ == "__main__":
     # plt.show()
 
     # 7. 绘制三维图像
-    x, y = np.ogrid[-3:3:100j, -3:3:100j]
-    # u = np.linspace(-3, 3, 101)
-    # x, y = np.meshgrid(u, u)
-    z = x*y*np.exp(-(x**2 + y**2)/2) / math.sqrt(2*math.pi)
+    # x, y = np.ogrid[-3:3:100j, -3:3:100j]
+    # # u = np.linspace(-3, 3, 101)
+    # # x, y = np.meshgrid(u, u)
     # z = x*y*np.exp(-(x**2 + y**2)/2) / math.sqrt(2*math.pi)
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    # ax.plot_surface(x, y, z, rstride=5, cstride=5, cmap=cm.coolwarm, linewidth=0.1)  #
-    ax.plot_surface(x, y, z, rstride=5, cstride=5, cmap=cm.Accent, linewidth=0.5)
-    plt.show()
+    # # z = x*y*np.exp(-(x**2 + y**2)/2) / math.sqrt(2*math.pi)
+    # fig = plt.figure()
+    # ax = fig.add_subplot(111, projection='3d')
+    # # ax.plot_surface(x, y, z, rstride=5, cstride=5, cmap=cm.coolwarm, linewidth=0.1)  #
+    # ax.plot_surface(x, y, z, rstride=5, cstride=5, cmap=cm.Accent, linewidth=0.5)
+    # plt.show()
     # cmaps = [('Perceptually Uniform Sequential',
     #           ['viridis', 'inferno', 'plasma', 'magma']),
     #          ('Sequential', ['Blues', 'BuGn', 'BuPu',

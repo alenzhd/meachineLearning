@@ -10,7 +10,7 @@ import os
 def load_stopwords():
     f = open('stopword.txt')
     for w in f:
-        stopwords.add(w.strip().decode('GB18030'))
+        stopwords.add(w.strip())#.decode('GB18030'))
     f.close()
 
 
@@ -44,5 +44,5 @@ if __name__ == "__main__":
         os.mkdir(output_dir)
     for file_name in os.listdir(input_dir):
         if os.path.splitext(file_name)[-1] == '.txt':
-            print file_name
+            print (file_name)
             segment_one_file(os.path.join(input_dir, file_name), os.path.join(output_dir, file_name))
